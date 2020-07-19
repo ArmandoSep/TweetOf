@@ -37,16 +37,19 @@ def getch_user(screen_name=None):
 
     # STORING TWITTER DATA IN THE DATABASE
 
-    # all_tweet_texts = [status.full_text for status in statuses]
-    # embeddings = list(basilica_api.embed_sentences(all_tweet_texts, model="twitter"))
-    # print("NUMBER OF EMBEDDINGS", len(embeddings))
+    all_tweet_texts = [status.full_text for status in tweets]
+    embeddings = list(basilica_api_client.embed_sentences(all_tweet_texts, model="twitter"))
+    print("NUMBER OF EMBEDDINGS", len(embeddings))
 
-    for status in tweets:
+    for index, status in enumerate(tweets):
+        print(index)
         print(status.full_text)
         print("----")
 
-        embedding = basilica_api_client.embed_sentence(status.full_text, model="twitter") # todo: prefer to make a single request to basilica with all the tweet texts, instead of a request per tweet
-        print(len(embedding))
+        # embedding = basilica_api_client.embed_sentence(status.full_text, model="twitter") # todo: prefer to make a single request to basilica with all the tweet texts, instead of a request per tweet
+        # print(len(embedding))
+        embedding = embeddings[index] # reference its tweet using the numeric position
+
         # get existing tweet from the db or initialize a new one:
         db_tweet = Tweet.query.get(status.id) or Tweet(id=status.id)
         db_tweet.user_id = status.author.id # or db_user.id
