@@ -9,7 +9,7 @@ from flask import Blueprint, request, jsonify, render_template
 from sklearn.linear_model import LogisticRegression # for example
 
 from web_app.models import User
-# from web_app.services.basilica_service import basilica_api_client
+from web_app.services.basilica_service import connection as basilica_api_client
 
 stats_routes = Blueprint("stats_routes", __name__)
 
@@ -64,9 +64,12 @@ def predict():
     # example_embed_b = user_b_tweets[3].embedding
     # result = classifier.predict([example_embed_a, example_embed_b])
     
+    embedding = basilica_api_client.embed_sentence(tweet_text, model="twitter")
+    result = classifier.predict([embedding])
+
     return render_template("predictions_results.html",
         screen_name_a=screen_name_a,
         screen_name_b=screen_name_b,
         tweet_text=tweet_text,
-        screen_name_most_likely="TODO" 
+        screen_name_most_likely=result[0] 
     )
