@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Our web app</title>
-</head>
-<body>
+
+{% extends "bootstrap_layout.html" %}
+{% block content %}
 
     <h2>Welcome to the Books Page</h2>
 
@@ -23,6 +17,4 @@
         <p>Books not found.</p>
     {% endif %}
 
-</body>
-</html>
-
+{% endblock %}
