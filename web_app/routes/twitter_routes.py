@@ -38,7 +38,7 @@ def fetch_user(screen_name=None):
     embeddings = list(basilica_api_client.embed_sentences(all_tweet_texts, model="twitter"))
     print("NUMBER OF EMBEDDINGS", len(embeddings))
 
-    for index, status in enumarate(tweets):
+    for index, status in enumerate(tweets):
         print(index)
         print(status.full_text)
         print("----")
