@@ -8,10 +8,10 @@ load_dotenv()
 
 API_KEY = os.getenv("BASILICA_API_KEY")
 
-def basilica_api_client():
-    connection = basilica.Connection(API_KEY)
-    print(type(connection)) #> <class 'basilica.Connection'>
-    return connection
+
+connection = basilica.Connection(API_KEY)
+print("CONNECTION BASILICA", type(connection)) #> <class 'basilica.Connection'>
+
 
 if __name__ == "__main__":
 

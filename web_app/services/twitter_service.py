@@ -13,7 +13,7 @@ TWITTER_ACCESS_TOKEN_SECRET = os.getenv("TWITTER_ACCESS_TOKEN_SECRET")
 
 auth = tweepy.OAuthHandler(TWITTER_API_KEY, TWITTER_API_SECRET)
 auth.set_access_token(TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET)
-
+print("API AUTH:", auth)
 api = tweepy.API(auth)
 print("API CLIENT:", api)
 
@@ -25,9 +25,8 @@ if __name__ == "__main__":
     print(user.followers_count)
 
 
-
     tweets = api.user_timeline('elonmusk', tweet_mode='extended')
-    print("TWEETS",type(tweet)) #> <class 'tweepy.models.Status'>
+    print("TWEETS",type(tweets)) #> <class 'tweepy.models.Status'>
     print(type(tweets[0]))
 
     tweet = tweets[0]
