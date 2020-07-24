@@ -3,11 +3,48 @@
 {% extends "bootstrap_layout.html" %}
 {% block content %}
 
+    <style>
+
+    #circle {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 150px;
+        height: 150px;
+    }
+
+    .loader {
+        width: calc(100% - 0px);
+        height: calc(100% - 0px);
+        border: 8px solid #162534;
+        border-top: 8px solid #09f;
+        border-radius: 50%;
+        animation: rotate 5s linear infinite;
+    }
+
+    @keyframes rotate {
+    100% {transform: rotate(360deg);}
+    } 
+    </style>
 
     <h2>TweetOf Prediction</h2>
 
     <p>Use the form below to predict which user is more likely to say a given tweet.</p>
     
+    <!-- <script>
+            function myFunction() {
+                var x = document.getElementById("circle");
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                } else {
+                    x.style.display = "none";
+                }
+            }
+    </script> -->
+
+
     <form action="/predict" method="POST">
         
         <div class="form-group">
@@ -32,10 +69,23 @@
             <label for="tweet_text">Tweet Text:</label>
             <textarea class="form-control" id="tweet_text" name="tweet_text" rows="3"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Predict</button>
-        
+        <button type="submit" onclick="myFunction()" class="btn btn-primary">Predict</button>
     </form>
 
+
+    <div id="circle">
+    <label for="loading_text">Getting User Data...</label>
+        <div class="loader">
+            <div class="loader">
+                <div class="loader">
+                    <div class="loader">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    
 
 
 {% endblock %}
