@@ -10,25 +10,25 @@
     
     <form action="/predict" method="POST">
         
-        <div class="col-auto">
-            <label class="sr-only" for="screen_name_a">Twitter User A</label>
-            <div class="input-group mb-2">
+        <div class="form-group">
+            <label for="screen_name_a">Twitter User A</label>
+            <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <div class="input-group-text">@</div>
                 </div>
                 <input type="text" class="form-control" id="screen_name_a" name="screen_name_a" placeholder="Username">
             </div>
         </div>
-        <div class="col-auto">
-            <label class="sr-only" for="screen_name_b">Twitter User B</label>
-            <div class="input-group mb-2">
+        <div class="form-group">
+            <label for="screen_name_b">Twitter User B</label>
+            <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <div class="input-group-text">@</div>
                 </div>
                 <input type="text" class="form-control" id="screen_name_b" name="screen_name_b" placeholder="Username">
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group mb-3">
             <label for="tweet_text">Tweet Text:</label>
             <textarea class="form-control" id="tweet_text" name="tweet_text" rows="3"></textarea>
         </div>

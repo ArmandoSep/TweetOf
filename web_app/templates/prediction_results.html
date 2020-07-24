@@ -4,9 +4,10 @@
 {% block content %}
     <h2>Prediction Results</h2>
 
-    <p>Between '@{{ screen_name_a }}' and '@{{ screen_name_b }}',
+    <p class="lead">
+        Between <mark>@{{ screen_name_a }}</mark> and <mark>@{{ screen_name_b }}</mark>,
         the user who is most likely to say '{{ tweet_text }}'
-        is '@{{ screen_name_most_likely }}'
+        is <mark>@{{ screen_name_most_likely }}</mark>.
     </p>
 
     <img src="{{ image }}" class="rounded mx-auto d-block" alt="Responsive image">
