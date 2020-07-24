@@ -25,9 +25,13 @@ def predict():
     print("FETCHING TWEETS FROM THE DATABASE...")
    # h/t: https://flask-sqlalchemy.palletsprojects.com/en/2.x/queries/
 
-    #get the embeddings from the database or fetch from Twitter
-    user_a = User.query.filter_by(screen_name=screen_name_a).first() #or fetch_user(screen_name_a)
-    user_b = User.query.filter_by(screen_name=screen_name_b).first() #or fetch_user(screen_name_a)
+    #get the embeddings from the database or fetch from Twitter    
+    if User.query.filter_by(screen_name=screen_name_a).first() is None:
+        fetch_user(screen_name_a)
+    if User.query.filter_by(screen_name=screen_name_b).first() is None:
+        fetch_user(screen_name_b)
+    user_a = User.query.filter_by(screen_name=screen_name_a).first() #or screen_name_a.fetch_user()
+    user_b = User.query.filter_by(screen_name=screen_name_b).first() #or screen_name_b.fetch_user()
     user_a_tweets = user_a.tweets
     user_b_tweets = user_b.tweets
     print("FETCHED TWEETS", len(user_a_tweets), len(user_b_tweets))
