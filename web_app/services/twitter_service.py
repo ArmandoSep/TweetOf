@@ -23,6 +23,7 @@ if __name__ == "__main__":
     print(user.screen_name)
     print(user.name)
     print(user.followers_count)
+    print(user.profile_image_url_https)
 
 
     tweets = api.user_timeline('elonmusk', tweet_mode='extended')

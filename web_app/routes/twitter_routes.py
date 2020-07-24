@@ -13,6 +13,10 @@ def fetch_user(screen_name=None):
 
     # FETCHING DATA FROM TWITTER API
     twitter_user = twitter_api_client.get_user(screen_name)
+    
+    #strip '_normal' on link to get the regular size image
+    twitter_user_picture = twitter_user.profile_image_url_https 
+    twitter_user_picture = twitter_user_picture.replace('_normal', '')
 
     # STORING TWITTER DATA IN THE DATABASE
     # get existing user from the db or initialize a new one:
@@ -21,6 +25,7 @@ def fetch_user(screen_name=None):
     db_user.name = twitter_user.name
     db_user.location = twitter_user.location
     db_user.followers_count = twitter_user.followers_count
+    db_user.picture = twitter_user_picture
     
     db.session.add(db_user)
     db.session.commit()

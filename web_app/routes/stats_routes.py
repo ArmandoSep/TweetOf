@@ -7,6 +7,7 @@
 from flask import Blueprint, request, jsonify, render_template
 from sklearn.linear_model import LogisticRegression # for example
 from web_app.models import User
+from web_app.routes.twitter_routes import fetch_user
 from web_app.services.basilica_service import connection as basilica_api_client
 
 stats_routes = Blueprint("stats_routes", __name__)
@@ -24,13 +25,12 @@ def predict():
     print("FETCHING TWEETS FROM THE DATABASE...")
    # h/t: https://flask-sqlalchemy.palletsprojects.com/en/2.x/queries/
 
-    #get the embeddings (from the database)
-    user_a = User.query.filter_by(screen_name=screen_name_a).first()
-    user_b = User.query.filter_by(screen_name=screen_name_b).first()
+    #get the embeddings from the database or fetch from Twitter
+    user_a = User.query.filter_by(screen_name=screen_name_a).first() #or fetch_user(screen_name_a)
+    user_b = User.query.filter_by(screen_name=screen_name_b).first() #or fetch_user(screen_name_a)
     user_a_tweets = user_a.tweets
     user_b_tweets = user_b.tweets
     print("FETCHED TWEETS", len(user_a_tweets), len(user_b_tweets))
-
 
     print("-----------------")
     print("TRAINING THE MODEL...")
@@ -62,10 +62,14 @@ def predict():
     
     embedding = basilica_api_client.embed_sentence(tweet_text, model="twitter")
     result = classifier.predict([embedding])
+    image_screen_name = result[0]
+    image_user = User.query.filter_by(screen_name=image_screen_name).first()
+    image = image_user.picture
 
     return render_template("prediction_results.html",
         screen_name_a=screen_name_a,
         screen_name_b=screen_name_b,
         tweet_text=tweet_text,
-        screen_name_most_likely= result[0] 
+        screen_name_most_likely= result[0],
+        image=image 
     )
