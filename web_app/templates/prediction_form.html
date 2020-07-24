@@ -7,61 +7,33 @@
     <h2>TweetOf Prediction</h2>
 
     <p>Use the form below to predict which user is more likely to say a given tweet.</p>
-
-    <!-- <form action="/predict" method="POST">
-
-        TODO: Instead of hard-coding these drop-down menu options, dynamically populate them based on user records from the database
-        <label>Twitter User A:</label>
-        <select name="screen_name_a">
-            <option value="elonmusk" selected="true">@elonmusk</option>
-            <option value="justinbieber">@justinbieber</option>
-            <option value="s2t2">@s2t2</option>
-        </select>
-        <br>
-
-        TODO: Instead of hard-coding these drop-down menu options, dynamically populate them based on user records from the database
-        <label>Twitter User B:</label>
-        <select name="screen_name_b">
-            <option value="elonmusk">@elonmusk</option>
-            <option value="justinbieber" selected="true">@justinbieber</option>
-            <option value="s2t2">@s2t2</option>
-        </select>
-        <br>
-
-        <label>Tweet Text:</label>
-        <input type="text" name="tweet_text" placeholder="Tesla Model S production facility is great" value="Tesla Model S production facility is great">
-        <br>
-
-        <button>Predict</button>
-    </form> -->
-
     
     <form action="/predict" method="POST">
-        <div class="form-group">
-            <label for="exampleFormControlInput1">Email address</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-        </div>
-        <div class="form-group">
-            <label for="screen_name_a">Twitter User A</label>
-            <select class="form-control" id="screen_name_a", name="screen_name_a">
-                <option value="elonmusk" selected="true">@elonmusk</option>
-                <option value="justinbieber">@justinbieber</option>
-                <option value="armando.sep">@armando.sep</option>
-            </select>
-        </div>
-        <div class="form-group">
-                <label for="screen_name_b">Twitter User B</label>
-                <select class="form-control" id="screen_name_b", name="screen_name_b">
-                    <option value="elonmusk">@elonmusk</option>
-                    <option value="justinbieber" selected="true">@justinbieber</option>
-                    <option value="BarackObama">@BarackObama</option>
-                </select>
+        
+        <div class="col-auto">
+            <label class="sr-only" for="screen_name_a">Twitter User A</label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">@</div>
+                </div>
+                <input type="text" class="form-control" id="screen_name_a" name="screen_name_a" placeholder="Username">
             </div>
+        </div>
+        <div class="col-auto">
+            <label class="sr-only" for="screen_name_b">Twitter User B</label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">@</div>
+                </div>
+                <input type="text" class="form-control" id="screen_name_b" name="screen_name_b" placeholder="Username">
+            </div>
+        </div>
         <div class="form-group">
             <label for="tweet_text">Tweet Text:</label>
             <textarea class="form-control" id="tweet_text" name="tweet_text" rows="3"></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Predict</button>
+        
     </form>
 
 
