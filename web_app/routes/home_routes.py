@@ -7,11 +7,11 @@ home_routes = Blueprint("home_routes", __name__)
 def index():
     return render_template("prediction_form.html")
 
-@home_routes.route("/hello")
-def hello():
-    x = 2 + 2
-    return f"Hello World! {x}"
+# @home_routes.route("/hello")
+# def hello():
+#     x = 2 + 2
+#     return f"Hello World! {x}"
 
 @home_routes.route("/about")
 def about():
-    return "About me"
+    return "Armando Sepulveda"
