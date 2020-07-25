@@ -1,5 +1,5 @@
 # Local database stuff:
-migrations/
+# migrations/
 *.db
 
 
