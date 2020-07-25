@@ -10,9 +10,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
-DATABASE_URI = "sqlite:///tweetof_development.db" # using relative filepath
-SECRET_KEY = os.getenv("SECRET_KEY")
+DATABASE_URI = os.getenv("DATABASE_URI")
+SECRET_KEY = os.getenv("SECRET_KEY", default="super secret")
 
 def create_app():
     app = Flask(__name__)
